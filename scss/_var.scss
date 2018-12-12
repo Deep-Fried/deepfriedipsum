@@ -1,0 +1,417 @@
+// COLORS
+// ----------------
+$beige         : #efebd1;
+$beige-light   : #f5f4e6;
+
+$black         : #2b0b0b;
+
+$gray          : #43413f;
+$gray-dark     : #282926;
+$gray-light    : #fafafa;
+
+$green         : #94d16e;
+
+$red           : #cc3429;
+$red-dark      : #900;
+$red-light     : #e64c4c;
+$red-off       : #db4643;
+$red-saturated : #ca0000;
+
+$taupe         : #968e83;
+$taupe-light   : #fcf9f4;
+$taupe-medium  : #9e948b;
+
+$teal          : #6fc8b9;
+
+
+// TYPOGRAPHY
+// ----------------
+$sans-serif     : 'Raleway', Verdana, sans-serif;
+$sans-serif-alt : 'Oswald', Arial, sans-serif;
+$cursive        : 'Satisfy', cursive;
+$serif          : 'Libre Baskerville', serif;
+
+// COMPONENTS
+// ----------------
+%dfa-button
+{
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  white-space: nowrap;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
+@mixin dfa-button-pill-maker(
+  $dfa-button-pill-maker-color : red
+  , $dfa-button-pill-maker-font-weight : 700
+)
+{
+  $dfa-button-pill-background       : $red-off;
+  $dfa-button-pill-background-hover : #fe5b51;
+  $dfa-button-pill-text-color       : #fff;
+  $dfa-button-pill-box-shadow-color : $red-dark;
+  $dfa-button-pill-border           : none;
+  $dfa-button-pill-border-hover     : none;
+
+  @if $dfa-button-pill-maker-color != red
+  {
+    $dfa-button-pill-background       : none;
+    $dfa-button-pill-background-hover : #fff;
+    $dfa-button-pill-text-color       : $black;
+    $dfa-button-pill-box-shadow-color : $taupe;
+    $dfa-button-pill-border           : 1px dotted $taupe;;
+    $dfa-button-pill-border-hover     : 1px solid $taupe;;
+  }
+
+  @extend %dfa-button;
+  padding: .75em 2em;
+  position: relative;
+  font-family: $sans-serif;
+  font-weight: $dfa-button-pill-maker-font-weight;
+  border: $dfa-button-pill-border;
+  background: $dfa-button-pill-background;
+  color: $dfa-button-pill-text-color;
+  @include border-radius( 3px );
+  @include transition( top .25s linear, background .25s linear, box-shadow .25s linear );
+}
+
+@mixin dfa-button-pill(
+  $dfa-button-pill-color : red
+  , $dfa-button-pill-font-weight : 700
+)
+{
+  @include dfa-button-pill-maker( $dfa-button-pill-color, $dfa-button-pill-font-weight );
+  $dfa-button-pill-background       : $red-off;
+  $dfa-button-pill-background-hover : #fe5b51;
+  $dfa-button-pill-text-color       : #fff;
+  $dfa-button-pill-box-shadow-color : $red-dark;
+  $dfa-button-pill-border           : none;
+  $dfa-button-pill-border-hover     : none;
+
+  @if $dfa-button-pill-color != red
+  {
+    $dfa-button-pill-background       : $beige-light;
+    $dfa-button-pill-background-hover : #fff;
+    $dfa-button-pill-text-color : $black;
+    $dfa-button-pill-box-shadow-color : $taupe;
+    $dfa-button-pill-border           : 1px dotted $taupe;;
+    $dfa-button-pill-border-hover     : 1px solid $taupe;;
+  }
+
+  top: 0;
+
+  &:hover
+  , &:focus
+  {
+    top: -.25em;
+    border: $dfa-button-pill-border-hover;
+    background: $dfa-button-pill-background-hover !important;
+    color: $dfa-button-pill-text-color; // This is to override the default a:hover style
+    @include box-shadow( 0 .25em 0 $dfa-button-pill-box-shadow-color );
+  }
+
+  &:active
+  {
+    top: 0;
+    @include box-shadow( none );
+  }
+}
+
+@mixin dfa-button-sharp()
+{
+  @extend %dfa-button;
+  padding: .125em 1em;
+  font-family: $cursive;
+  font-size: 2em;
+  font-weight: 200;
+  letter-spacing: 0;
+  color: $beige-light;
+  text-shadow: 1px 1px 0 #000;
+  background: $gray;
+  @include box-shadow( 6px 6px 0 0 $red );
+
+  &:hover
+  {
+    background: $gray !important;
+  }
+}
+
+// Columns
+$column-gutter: 2%;
+.column
+{
+  width: 100%;
+  margin: 0 $column-gutter 0 0;
+  display: inline-block;
+  vertical-align: top;
+  // Use background and margin-bottom to debug
+  // background: rgba( #fff, .5 );
+  // margin-bottom: 2px;
+
+  &:last-child
+  , &.column-last-in-row
+  {
+    margin-right: 0 !important;
+  }
+}
+
+.column-1-2
+{
+  @include bp( 2 )
+  {
+    width: ( 100% - $column-gutter ) / 2;
+  }
+}
+
+.column-1-3
+{
+  @include bp( 2 )
+  {
+    width: ( 100% - ( $column-gutter * 2 ) ) / 3;
+  }
+}
+
+.column-2-3
+{
+  @include bp( 2 )
+  {
+    width: ( ( ( 100% - ( $column-gutter * 2 ) ) / 3 ) * 2 ) + $column-gutter;
+  }
+}
+
+.column-1-4
+, .column-3-4
+{
+  @include bp( 1 )
+  {
+    width: ( 100% - $column-gutter ) / 2; // Behave like .column-1-2 in bp( 2 )
+
+    &:nth-child( even )
+    {
+      margin-right: 0;
+    }
+  }
+
+  @include bp( 2 )
+  {
+    &:nth-child( even )
+    {
+      margin-right: $column-gutter;
+    }
+  }
+}
+
+.column-1-4
+{
+  @include bp( 2 )
+  {
+    width: ( 100% - ( $column-gutter * 3 ) ) / 4 !important;
+  }
+}
+
+.column-3-4
+{
+  @include bp( 1 )
+  {
+    margin-right: $column-gutter + .4%;
+  }
+
+  @include bp( 2 )
+  {
+    width: ( ( ( 100% - ( $column-gutter * 3 ) ) / 4 ) * 3 ) + ( $column-gutter * 2 ) - .1%;
+    margin-right: $column-gutter;
+  }
+}
+
+.column-1-4:first-child
+, .column-1-2 + .column-1-4
+{
+  @include bp( 1 )
+  {
+    margin-right: $column-gutter + .4%; // For some reason, it's using its own width to calculate the gutter
+  }
+
+  @include bp( 2 )
+  {
+    margin-right: $column-gutter;
+  }
+}
+
+.column-1-4 + .column-1-2 + .column-1-4
+{
+  @include bp( 1 )
+  {
+    width: 100%;
+  }
+}
+
+.column-force-full-width
+{
+  @include bp( 1 )
+  {
+    width: 100%;
+  }
+}
+
+// MIXINS
+// ----------------
+@mixin selection
+{
+  text-shadow: none;
+  background: $red-light;
+  color: #fff;
+}
+
+// CLEAR
+// Contain floats: nicolasgallagher.com/micro-clearfix-hack/
+@mixin dfa-clearfix
+{
+  zoom: 1;
+
+  &:before
+  , &:after
+  {
+    content: '';
+    display: table;
+  }
+
+  &:after
+  {
+    clear: both;
+  }
+}
+
+// Menu three-bar-thingy
+@mixin hamburger-helper(
+  $hamburger_color : #000
+  , $hamburger_thickness : 0.25em
+  , $hamburger_thickness_offset : 0.2em
+  , $hamburger_width : 1em
+  , $hamburger_side : right
+  , $hamburger_gutter : 1em
+  , $hamburger_top : false
+  , $hamburger_right : false
+  , $hamburger_left : false
+  )
+{
+  @if $hamburger_side == right
+  {
+    padding-right: ( $hamburger_width + $hamburger_gutter );
+  }
+
+  @else
+  {
+    padding-left: ( $hamburger_width + $hamburger_gutter );
+  }
+
+  position: relative;
+
+  &:after
+  {
+    content: "";
+    width: $hamburger_width;
+    height: $hamburger_thickness;
+    position: absolute;
+
+    @if $hamburger_top
+    {
+      top: $hamburger_top;
+    }
+
+    @if $hamburger_right
+    {
+      right: $hamburger_right;
+    }
+
+    @if $hamburger_left
+    {
+      left: $hamburger_left;
+    }
+
+    background: $hamburger_color;
+    @include box-shadow(
+      0 ( $hamburger_thickness + $hamburger_thickness_offset ) 0 0 $hamburger_color,
+      0 ( ( $hamburger_thickness * 2 ) + ( $hamburger_thickness_offset * 2 ) ) 0 0 $hamburger_color
+    );
+  }
+}
+
+// Fancy labels for forms
+@mixin float-label(
+  $direction: up
+  , $top: 1em
+  , $left: 0
+  , $transition-time: .25s
+  , $transition-type: ease-out
+)
+{
+  padding-top: $top * 1.25;
+  position: relative;
+  overflow: hidden;
+
+  label
+  {
+  position: absolute;
+  opacity: 0;
+
+    @if $direction == up
+    {
+      top: $top;
+      left: $left;
+      @include transition( opacity $transition-time $transition-type, top $transition-time $transition-type );
+    }
+    @if $direction == left
+    {
+      top: 0;
+      left: -20%;
+      @include transition( opacity $transition-time $transition-type, left $transition-time $transition-type );
+    }
+  }
+
+   input:valid
+  , textarea:valid
+  {
+    & + label
+    {
+      opacity: 1;
+
+      @if $direction == up
+      {
+        top: 0;
+      }
+
+      @if $direction == left
+      {
+        left: $left;
+      }
+    }
+  }
+}
+
+
+// Keyframes
+@mixin keyframes( $name )
+{
+  @-webkit-keyframes #{$name}
+  {
+    @content;
+  }
+
+  @-moz-keyframes #{$name}
+  {
+    @content;
+  }
+
+  @-ms-keyframes #{$name}
+  {
+    @content;
+  }
+
+  @keyframes #{$name}
+  {
+    @content;
+  }
+}

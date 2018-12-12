@@ -1,0 +1,460 @@
+
+/* TYPOGRAPHY */
+/* ----------------------------------------- */
+/* Font stack options
+
+  The following represents a list of font stacks, as recommended by Nathan Ford in
+  http://unitinteractive.com/blog/2008/06/26/better-css-font-stacks/
+
+  I've added inverted commas around the relevant family names to ensure compatibility.
+  p = balanced for paragraphs or body copy
+  t = balanced for headlines or titles
+
+  - - - -
+
+Arial, "Helvetica Neue", Helvetica, sans-serif - p, t
+
+Baskerville, "Times New Roman", Times, serif - p
+Baskerville, Times, "Times New Roman", serif - t
+
+Cambria, Georgia, Times, "Times New Roman", serif - p, t
+"Century Gothic", "Apple Gothic", sans-serif - p, t
+
+Consolas, "Lucida Console", Monaco, monospace - p, t
+
+"Copperplate Light", "Copperplate Gothic Light", serif - p, t
+
+"Courier New", Courier, monospace - p, t
+
+"Franklin Gothic Medium", "Arial Narrow Bold", Arial, sans-serif - p, t
+
+Futura, "Century Gothic", "Apple Gothic", sans-serif - p, t
+
+Garamond, "Hoefler Text", "Times New Roman", Times, serif - p
+Garamond, "Hoefler Text", Palatino, "Palatino Linotype", serif - t
+
+Geneva, "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif - p
+Geneva, Verdana, "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif - t
+
+Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif - p
+Georgia, Times, "Times New Roman", serif - t
+
+GillSans, Calibri, Trebuchet, sans-serif - p
+GillSans, Trebuchet, Calibri, sans-serif - t
+
+"Helvetica Neue", Arial, Helvetica, sans-serif - p
+Helvetica, "Helvetica Neue", Arial, sans-serif - t
+
+Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif - p, t
+
+"Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif - p, t
+
+Palatino, "Palatino Linotype", Georgia, Times, "Times New Roman", serif - p
+Palatino, "Palatino Linotype", "Hoefler Text", Times, "Times New Roman", serif - t
+
+Tahoma, Geneva, Verdana - p
+Tahoma, Verdana, Geneva - t
+
+Times, "Times New Roman", Georgia, serif - p, t
+
+Trebuchet, "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif - p
+Trebuchet, Tahoma, Arial, sans-serif - t
+
+Verdana, Geneva, Tahoma, sans-serif - p
+Verdana, Tahoma, Geneva, sans-serif - t
+
+*/
+
+*
+, *:before
+, *:after
+{
+  @include box-sizing( 'border-box' );
+}
+
+body
+, button
+, html
+, input
+, select
+, table
+, td
+, textarea
+{
+    font-family: $sans-serif;
+    font-size: 100%;
+    font-weight: 300;
+    color: $gray-dark;
+}
+
+::selection
+{
+  // Safari, Chrome, Opera, etc
+  @include selection;
+}
+
+::-moz-selection
+{
+  // Firefox
+  @include selection;
+}
+
+html
+{
+  background: $gray-dark url( 'img/min/halftone-dark.png' ) center;
+}
+
+body
+{
+  margin: 0 auto;
+  padding: 0;
+  line-height: 1.7;
+}
+
+table
+{
+  width: 100%;
+}
+
+th
+{
+  font-weight: 700;
+}
+
+td
+, th
+{
+  padding: .5em;
+  vertical-align: top;
+  text-align: left;
+}
+
+article
+, .blog .hentry
+{
+  max-width: 60em;
+  margin: 0 auto;
+  padding: 1em;
+  color: $gray-dark;
+}
+
+blockquote
+, dl
+, form
+, h1
+, h2
+, h3
+, h4
+, h5
+, h6
+, p
+, ol
+, ul
+, table
+{
+  margin-bottom: 1em;
+}
+
+ul
+{
+  list-style-type: none;
+
+  li
+  {
+    list-style: square;
+  }
+
+  nav &
+  {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+ol
+{
+  li
+  {
+    list-style: decimal;
+  }
+}
+
+h1
+{
+  margin-bottom: 0;
+  padding: ( 1em / 2 );
+  font-size: 2em;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  background: $red-saturated;
+  background: rgba( $red-saturated, .75 );
+  color: #fff;
+  text-shadow: 2px 2px 2px rgba( $black, .8 );
+
+  a:link
+  , a:visited
+  {
+    color: #fff;
+  }
+
+  @include bp( 1 )
+  {
+    padding: ( 1em / 3 );
+    font-size: 3em;
+  }
+
+  @include bp( 2 )
+  {
+    padding: ( 1em / 4 );
+    font-size: 4em;
+  }
+}
+
+h2
+{
+  margin-bottom: 0;
+  font-size: 1.25em;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #de5d53;
+
+  @include bp( 2 )
+  {
+    font-size: 2em;
+  }
+
+  a:link
+  , a:visited
+  {
+    color: #de5d53;
+  }
+}
+
+h3
+{
+  margin-bottom: 0;
+  font-family: $sans-serif-alt;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: $taupe;
+
+  h2 + &
+  {
+    margin-top: 0;
+  }
+
+  a:link
+  , a:visited
+  {
+    color: $taupe;
+  }
+}
+
+h4
+{
+  padding-left: 20px;
+  font-family: $sans-serif-alt;
+  font-size: 22px !important;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #e97870 !important;
+
+  a:link
+  , a:visited
+  {
+    color: #e97870;
+  }
+}
+
+h5
+, h6
+{
+  padding: 1em 40px;
+  font-size: .75em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: $taupe; // fallback
+  background: rgba( $taupe, .2 );
+  @include border-radius( 3px );
+
+  a:link
+  , a:visited
+  {
+    color: $black;
+  }
+}
+
+
+blockquote
+{
+  margin: 0 0 3em;
+  padding: 1em 2em;
+  position: relative;
+  border: 1px solid $taupe;
+  background: #fff; // fallback
+  background: rgba( #fff, .75 );
+  @include box-shadow( 6px 6px 0 rgba( $taupe, .25 ) );
+
+  quotes: '\201C' '\201D' '\2018' '\2019';
+
+  p
+  {
+    position: relative;
+    z-index: 1;
+
+    &:before
+    {
+      $font-multiplier : 10;
+      content: open-quote;
+      position: absolute;
+      top: ( 3.5em / $font-multiplier );
+      left: -.15em;
+      z-index: -1;
+      font-size: ( 1em * $font-multiplier );
+      font-family: $sans-serif-alt;
+      line-height: 0;
+      color: $taupe-light; // fallback
+      color: rgba( $taupe, .125 );
+    }
+
+    &:after
+    {
+      content: no-close-quote;
+    }
+
+    &:last-child:after
+    , &:last-of-type:after
+    {
+      content: close-quote;
+    }
+
+    &:last-of-type
+    {
+      margin-bottom: 0;
+    }
+  }
+}
+
+em.cite
+{
+  margin-top: 1em;
+  display: block;
+  font-style: normal;
+  font-family: $sans-serif-alt;
+  text-transform: uppercase;
+  text-align: right;
+  color: $gray;
+
+  .company
+  {
+    display: block;
+    font-family: $sans-serif;
+    line-height: 1;
+    text-transform: none;
+    color: $taupe;
+  }
+}
+
+a
+{
+  text-decoration: none;
+  color: #e97870;
+  @include transition( color .3s ease );
+
+  &:hover
+  {
+    color: $red-saturated;
+  }
+}
+
+abbr
+{
+  text-transform: uppercase;
+  font-size: .75em;
+}
+
+img
+{
+  max-width: 100%;
+  height: auto;
+}
+
+hr
+{
+  margin: 0 0 3em;
+}
+
+fieldset
+{
+  margin: 0;
+  border: 1px dotted $taupe; // fallback
+  border: 1px dotted rgba( $taupe, .25 );
+}
+
+label
+{
+  font-weight: 700;
+
+  input[ type="checkbox" ] + &, input[ type="radio" ] + &
+  {
+    @include dfa-button-pill-maker( light, 400 );
+    min-width: 5em;
+    margin: 0 1em .5em 0;
+    padding: .5em;
+    top: .125em;
+  }
+
+  input:checked + &
+  {
+    top: -.125em;
+    border: 1px solid $taupe;
+    background: #fff;
+    @include box-shadow( 0 .125em 0 $taupe );
+  }
+
+}
+
+button, // Comma-last syntax because of Compass error.
+input[ type="submit" ]
+{
+  @include dfa-button-pill();
+}
+
+
+input[ type="text" ]
+, input[ type="tel" ]
+, input[ type="email" ]
+, input[ type="url" ]
+, textarea
+{
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: .25em .5em;
+  font-size: 100%;
+  font-family: inherit;
+  line-height: 1.7;
+  border: 1px dotted transparent;
+  border-bottom-color: $black;
+  background: none;
+  color: $black;
+  @include transition( border linear .2s, box-shadow linear .2s );
+
+  &:focus
+  {
+    outline: 0;
+    border: 1px solid $taupe;
+    background: #fff;
+    @include box-shadow( 6px 6px 0 0 rgba( $taupe, .2 ) );
+  }
+}
+
+input[ type="file" ]
+{
+  padding: .25em .5em .75em;
+  line-height: 0;
+  border: 0;
+}

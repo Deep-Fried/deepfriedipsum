@@ -1,0 +1,145 @@
+
+input.submit
+{
+  width: 100%;
+  margin-top: 1em;
+  -webkit-appearance: none;
+
+  @include bp( 1 )
+  {
+    width: 50%;
+  }
+}
+
+.container
+{
+  width: 100%;
+  margin: 0 auto;
+  padding: 2em 1em;
+
+  @include bp( 1 )
+  {
+    max-width: 40em;
+    padding: 2em;
+
+    .header &
+    {
+      padding: 1em;
+    }
+  }
+
+  @include bp( 2 )
+  {
+    max-width: 60em;
+  }
+}
+
+.logo
+{
+  margin: 0 auto 1em;
+  display: block;
+
+  @include bp( 2 )
+  {
+    max-width: 50%;
+  }
+}
+
+.header
+{
+  border-bottom: 10px solid $red-light;
+  background: $taupe-light url( 'img/min/halftone.png' ) center;
+}
+
+.tagline
+{
+  margin: 0;
+  margin-bottom: ( 2em / 1.25 );
+  padding: ( 1em / 1.25 );
+  font-size: 1.25em;
+  font-family: $sans-serif-alt;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+  background: $red-saturated;
+  background: rgba( $red-saturated, .75 );
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba( $black, .8 );
+
+  @include bp( 1 )
+  {
+    padding: ( 1em / 1.5 );
+    font-size: 1.5em;
+  }
+
+  @include bp( 2 )
+  {
+    padding: ( 1em / 2 );
+    font-size: 2em;
+  }
+}
+
+.content
+{
+  background: url( 'img/min/french-fries.jpg' ) no-repeat center;
+  background-size: cover;
+}
+
+.has-bg
+{
+  padding: 1em 2em 2em;
+  background: $taupe-light;
+  background: rgba( $taupe-light, .95 );
+  @include border-radius( 3px );
+
+  @include bp( 2 )
+  {
+    width: 50%;
+    margin-left: 50%;
+  }
+}
+
+.print-paragraphs
+{
+  min-height: 15em;
+  max-height: 20em;
+  margin-top: 2em;
+  padding: 1em 2em;
+  overflow: scroll;
+  border: 1px solid $taupe-medium;
+  background: $taupe-light;
+}
+
+.fb-like
+{
+  margin: 1em 0;
+}
+
+.fb-like
+, .fb-like > span
+, .fb-like iframe
+{
+    max-width: 100% !important;
+
+    @include bp( 2 )
+    {
+      max-width: none !important;
+    }
+}
+
+.footer
+{
+  border-top: 1px solid $black;
+  color: $taupe;
+
+  .container
+  {
+    padding-top: 1em;
+  }
+
+  a
+  {
+    color: $taupe;
+  }
+}
